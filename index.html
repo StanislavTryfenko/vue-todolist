@@ -26,23 +26,34 @@
     
     <div id="app">
 
-        <form>
-            <input type="text" name="" id="">
-            <button>Aggiungi</button>
+        <h1>TODO LIST</h1>
+
+        <form class="col-4" method="submit" @submit.prevent>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Add Task</span>
+                <input type="text" class="form-control" v-model.trim="newTask" @keyup.enter="takeTask()">
+              </div>
+            <button type="submit" class="btn btn-primary" @click="takeTask()">Aggiungi</button>
         </form>
 
-        <div id="TaskList">
-
-            
+        <div id="TaskList" class="mt-4">
+            <ol>
+                <li v-for="(task,index) in tasksList" >
+                    <div>
+                        {{task.text}}
+                        <i class="fa-solid fa-x" @click="toggleTask(index)"></i>
+                    </div> 
+                </li>
+            </ol>
         </div>
 
     </div>
 
-    <!-- My js -->
-    <script src="./assets/js/app.js"></script>
-
     <!-- Vuejs Library  -->
     <script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
+
+    <!-- My js -->
+    <script src="./assets/js/app.js"></script>
 
     <!-- Bootstrap JavaScript Libraries -->
     <script
